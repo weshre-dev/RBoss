@@ -6,6 +6,7 @@ import bgHero from "@/assets/img/bg-hero.png?w=300;500;800;1000;1300;1500&format
 import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import Slider from "./components/Slider.vue";
 import Companies from "./components/Companies.vue";
+import SectionTeam from "./components/SectionTeam.vue";
 </script>
 
 <template>
@@ -42,6 +43,8 @@ import Companies from "./components/Companies.vue";
     <Slider />
 
     <Companies />
+
+    <SectionTeam />
   </main>
 </template>
 
