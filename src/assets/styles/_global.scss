@@ -1,0 +1,56 @@
+@layer base {
+  img {
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    height: 100vh;
+  }
+}
+
+.page {
+  position: relative;
+  background-color: var(--bg-body);
+  min-height: 100vh;
+  margin-inline: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  header,
+  section,
+  footer {
+    &:not(.reset) {
+      position: relative;
+      width: 100%;
+      max-width: 1920px;
+      margin-inline: auto;
+      &:not(.full-w) {
+        @apply px-20 md:px-60;
+      }
+    }
+  }
+  main {
+    min-height: 100vh;
+  }
+}
+
+.page-padding {
+  @apply px-20 md:px-60;
+}
+
+figure {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

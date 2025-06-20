@@ -1,0 +1,10 @@
+@use "global" as *;
+@use "utils/typography" as *;
+@use "utils/misc" as *;
+@use "utils/anims" as *;
+@use "utils/forms" as *;
+@use "utils/modals" as *;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

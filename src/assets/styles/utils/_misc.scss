@@ -1,0 +1,45 @@
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .custom-scrollbar {
+    cursor: pointer !important;
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+      padding-block: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--bg-body);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--blue-color);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--blue-color-darken);
+      border-radius: 999px;
+    }
+  }
+  .clip-heart {
+    clip-path: polygon(51% 0, 100% 0, 100% 22%, 100% 54%, 100% 100%, 50% 100%, 0 100%, 0 69%, 0 36%, 0 0);
+    transition: clip-path 0.5s ease;
+    cursor: pointer;
+    &:hover {
+      clip-path: polygon(51% 25%, 77% 13%, 98% 33%, 96% 57%, 72% 83%, 50% 100%, 26% 82%, 8% 57%, 3% 33%, 25% 13%);
+      img {
+        animation: scaleUpAndDown 2s;
+      }
+    }
+  }
+}
