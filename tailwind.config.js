@@ -26,18 +26,20 @@ export default {
         custom: {
           red: "var(--red-color)",
           blue: "var(--blue-color)",
+          green: "var(--green-color)",
+          gray: "var(--gray-color)",
         },
 
         text: {
           primary: "var(--text-primary)",
           secondary: "var(--text-secondary)",
-          accent: "var(--text-accent)",
+          tertiary: "var(--text-tertiary)",
         },
         bg: {
           body: "var(--bg-body)",
           primary: "var(--bg-primary)",
           secondary: "var(--bg-secondary)",
-          accent: "var(--bg-accent)",
+          button: "var(--bg-button)",
         },
       },
       screens: {
@@ -47,21 +49,20 @@ export default {
         lg: "1024px",
         xl: "1280px",
         "2xl": "1536px",
-        "3xl": "1920px",
+        "3xl": "2050px",
       },
       fontSize: generateFontSizes(),
       spacing: generateSpacing(),
       letterSpacingPercentages: {
         "neg-8": -0.08, // -8%
-        "neg-4": -0.04, // -4%
+        "neg-5": -0.05, // -5%
         "pos-4": 0.04, // +4%
         "pos-8": 0.08, // +8%
       },
     },
 
     fontFamily: {
-      montserrat: ["Montserrat", "sans serif"],
-      fira: ["Fira Code", "monospace"],
+      poppins: ["Poppins", "sans serif"],
     },
 
     transitionTimingFunction: {

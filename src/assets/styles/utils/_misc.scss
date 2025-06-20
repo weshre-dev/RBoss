@@ -42,4 +42,18 @@
       }
     }
   }
+
+  .hr-full {
+    height: 1px;
+    width: calc(100% + 20px);
+    background-color: #262626;
+    @apply mt-80 mb-40;
+    @screen md {
+      width: calc(100% + 60px);
+    }
+    &--white {
+      background-color: #e4e1e1;
+      @apply mt-0 mb-40;
+    }
+  }
 }
