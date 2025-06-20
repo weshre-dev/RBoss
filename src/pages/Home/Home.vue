@@ -7,6 +7,7 @@ import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&forma
 import Slider from "./components/Slider.vue";
 import Companies from "./components/Companies.vue";
 import SectionTeam from "./components/SectionTeam.vue";
+import Contact from "@/components/Contact.vue";
 </script>
 
 <template>
@@ -45,6 +46,8 @@ import SectionTeam from "./components/SectionTeam.vue";
     <Companies />
 
     <SectionTeam />
+
+    <Contact />
   </main>
 </template>
 
