@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/pages/Home.vue";
+import Home from "@/pages/Home/Home.vue";
 import Typography from "@/pages/Typography.vue";
 import LayoutBase from "@/layouts/LayoutBase.vue";
 // import LayoutAdmin from "@/layouts/LayoutAdmin.vue";

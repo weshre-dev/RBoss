@@ -4,7 +4,8 @@ import { usePageTranslation } from "@/i18n";
 import VueSVG from "@/components/VueSVG.vue";
 import bgHero from "@/assets/img/bg-hero.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
-import Slider from "@/components/Slider.vue";
+import Slider from "./components/Slider.vue";
+import Companies from "./components/Companies.vue";
 </script>
 
 <template>
@@ -40,11 +41,7 @@ import Slider from "@/components/Slider.vue";
 
     <Slider />
 
-    <section class="s-companies">
-      <div class="hr-full"></div>
-      <h3>The Company</h3>
-      <h4>RBoss group serves as the parent company to different subsidiaries. These subsidiaries, offer the various services detailled above. Here are the 4 structures that compose RBoss group&nbsp;:</h4>
-    </section>
+    <Companies />
   </main>
 </template>
 

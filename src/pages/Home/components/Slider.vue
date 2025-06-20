@@ -107,7 +107,7 @@ const handleSlideClick = (slideData: any) => {
 <template>
   <section class="s-slider full-w">
     <div class="s-slider__buttons">
-      <button v-for="(slide, index) in slides" :key="slide.id" :class="{ active: index === currentSlideIndex }" @click="goToSlide(index)">
+      <button class="btn-primary" v-for="(slide, index) in slides" :key="slide.id" :class="{ active: index === currentSlideIndex }" @click="goToSlide(index)">
         <VueSVG src="/svg/plane.svg" />
         {{ slide.title }}
       </button>
@@ -131,7 +131,6 @@ const handleSlideClick = (slideData: any) => {
   position: relative;
   width: 100%;
   background-color: white;
-  // @apply px-20 md:px-60 lg:px-0 mt-40 lg:mt-150 h-650 xs:h-700 sm:h-500 md:h-600 lg:h-screen;
   @apply px-20 md:px-60 lg:px-0 mt-40 lg:mt-150;
 
   &__height {
@@ -153,23 +152,6 @@ const handleSlideClick = (slideData: any) => {
     align-items: center;
     flex-wrap: wrap;
     @apply gap-10 lg:gap-20 sm:justify-center;
-
-    button {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      font-weight: 300;
-      color: black;
-      background-color: #f0f0f0;
-      padding: 15px 20px;
-      border-radius: 999px;
-      transition: color 0.2s ease;
-      &:hover,
-      &.active {
-        color: #fd0000;
-      }
-    }
   }
 
   &__content {

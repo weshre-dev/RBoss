@@ -56,4 +56,20 @@
       @apply mt-0 mb-40;
     }
   }
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 300;
+    color: black;
+    background-color: #f0f0f0;
+    padding: 15px 20px;
+    border-radius: 999px;
+    transition: color 0.2s ease;
+    &:hover,
+    &.active {
+      color: #fd0000;
+    }
+  }
 }
