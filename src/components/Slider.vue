@@ -17,7 +17,7 @@ const slides = [
     id: 1,
     title: "Handling",
     image: slider1,
-    text: "Texte du slide 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae inventore at animi tempore nam vel ratione nostrum, est, debitis temporibus cumque vero, illum mollitia asperiores numquam? Magnam nisi obcaecati doloremque!",
+    text: "At RBoss Group, we deliver top-tier handling services at Liège Airport, combining operational excellence, safety, and innovation to support airlines, cargo operators, and airport stakeholders. With a focus on seamless service and strong partnerships, we ensure your operations run smoothly from ground to air.",
   },
   {
     id: 2,
@@ -79,7 +79,7 @@ const orderedSlides = computed(() => {
     ...slide,
     originalIndex: index,
     slideClass: getSlideClass(index),
-    isVisible: Math.abs(index - currentSlideIndex.value) <= 2 || Math.abs(index - currentSlideIndex.value) >= slides.length - 2,
+    // isVisible: Math.abs(index - currentSlideIndex.value) <= 2 || Math.abs(index - currentSlideIndex.value) >= slides.length - 2,
   }));
 });
 
@@ -97,46 +97,6 @@ const goToNextSlide = () => {
   goToSlide(newIndex);
 };
 
-const handleTouchStart = (e: TouchEvent) => {
-  touchStartX.value = e.touches[0].clientX;
-  touchStartY.value = e.touches[0].clientY;
-  isSwiping.value = true;
-};
-
-const handleTouchMove = (e: TouchEvent) => {
-  if (!isSwiping.value) return;
-
-  const touchCurrentX = e.touches[0].clientX;
-  const touchCurrentY = e.touches[0].clientY;
-  const diffX = touchStartX.value - touchCurrentX;
-  const diffY = touchStartY.value - touchCurrentY;
-
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    e.preventDefault();
-  }
-};
-
-const handleTouchEnd = (e: TouchEvent) => {
-  if (!isSwiping.value) return;
-
-  const touchEndX = e.changedTouches[0].clientX;
-  const touchEndY = e.changedTouches[0].clientY;
-  const diffX = touchStartX.value - touchEndX;
-  const diffY = touchStartY.value - touchEndY;
-
-  const minSwipeDistance = 50;
-
-  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > minSwipeDistance) {
-    if (diffX > 0) {
-      goToNextSlide();
-    } else {
-      goToPrevSlide();
-    }
-  }
-
-  isSwiping.value = false;
-};
-
 const handleSlideClick = (slideData: any) => {
   if (slideData.originalIndex !== currentSlideIndex.value) {
     goToSlide(slideData.originalIndex);
@@ -152,15 +112,16 @@ const handleSlideClick = (slideData: any) => {
         {{ slide.title }}
       </button>
     </div>
-    <div class="s-slider__content" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
-      <div v-for="slideData in orderedSlides" :key="slideData.id" :class="['slide', slideData.slideClass]" v-show="slideData.isVisible" @click="handleSlideClick(slideData)">
+    <div class="s-slider__content">
+      <div v-for="slideData in orderedSlides" :key="slideData.id" :class="['slide', slideData.slideClass]" v-show="slideData" @click="handleSlideClick(slideData)">
         <div :class="['bg', `bg--${slideData.id}`]">
           <img :srcset="slideData.image" alt="" role="presentation" />
         </div>
-        <p :class="{ active: slideData.originalIndex === currentSlideIndex }">
+        <p class="reset" :class="{ active: slideData.originalIndex === currentSlideIndex }">
           {{ slideData.text }}
         </p>
       </div>
+      <div class="s-slider__height"></div>
     </div>
   </section>
 </template>
@@ -169,17 +130,30 @@ const handleSlideClick = (slideData: any) => {
 .s-slider {
   position: relative;
   width: 100%;
-  height: 1000px;
-  margin-block: 100px;
   background-color: white;
+  // @apply px-20 md:px-60 lg:px-0 mt-40 lg:mt-150 h-650 xs:h-700 sm:h-500 md:h-600 lg:h-screen;
+  @apply px-20 md:px-60 lg:px-0 mt-40 lg:mt-150;
+
+  &__height {
+    width: 100%;
+    aspect-ratio: 363/416;
+    background-color: white;
+    z-index: -1;
+    @screen sm {
+      aspect-ratio: 995/592;
+    }
+    @screen lg {
+      max-width: 65%;
+      margin-bottom: 160px;
+    }
+  }
 
   &__buttons {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding-top: 100px;
+    @apply gap-10 lg:gap-20 sm:justify-center;
+
     button {
       display: flex;
       align-items: center;
@@ -203,37 +177,37 @@ const handleSlideClick = (slideData: any) => {
     width: 100%;
     height: 100%;
     margin-top: 50px;
-    touch-action: pan-y; // Permet le scroll vertical mais capture les gestes horizontaux
   }
 
   .slide {
     position: absolute;
-    aspect-ratio: 995/592;
     display: flex;
+    aspect-ratio: 363/416;
     border-radius: 20px;
     top: 0;
     left: 50%;
     overflow: hidden;
     transition: all 0.5s ease;
-    cursor: pointer; // Indique que l'élément est cliquable
-
-    // Améliorer l'interaction tactile
-    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    @screen sm {
+      aspect-ratio: 995/592;
+    }
 
     p {
       position: relative;
-      font-size: 18px;
-      font-weight: 500;
+      color: white;
       padding: 30px;
       margin-top: auto;
-      max-width: 70%;
+      max-width: 650px;
       z-index: 7;
-      pointer-events: none; // Empêche les clics sur le texte pour éviter les conflits
+      pointer-events: none;
+      line-height: 1.5;
+      @apply text-neg-5-16 font-medium;
 
       &::before {
         position: absolute;
         content: "";
-        width: calc(150%);
+        width: 200%;
         height: calc(100% + 20px);
         top: -20px;
         left: 0px;
@@ -242,6 +216,7 @@ const handleSlideClick = (slideData: any) => {
         opacity: 0;
         transition: opacity 0.3s ease 0.3s;
       }
+
       &.active::before {
         opacity: 1;
       }
@@ -249,11 +224,15 @@ const handleSlideClick = (slideData: any) => {
 
     &--1 {
       width: 100%;
-      max-width: 65%;
+      max-width: 100%;
       z-index: 5;
       transform: translateX(-50%);
+
+      @screen lg {
+        max-width: 65%;
+      }
       @apply shadow-2xl;
-      cursor: default; // Le slide central n'a pas besoin d'indiquer qu'il est cliquable
+      cursor: default;
       p {
         opacity: 1;
         transition: opacity 0.3s ease 0.5s;
@@ -324,7 +303,13 @@ const handleSlideClick = (slideData: any) => {
     }
 
     &--hidden {
-      opacity: 0;
+      width: 100%;
+      max-width: 65%;
+      z-index: 10;
+      top: 0;
+      left: unset;
+      right: 0;
+      transform: translate(100%, 45%) scale(0);
       pointer-events: none;
     }
   }

@@ -4,6 +4,7 @@ import { usePageTranslation } from "@/i18n";
 import VueSVG from "@/components/VueSVG.vue";
 import bgHero from "@/assets/img/bg-hero.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
+import Slider from "@/components/Slider.vue";
 </script>
 
 <template>
@@ -29,6 +30,20 @@ import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&forma
         to manpower solutions, making it a one-stop solution for all handling requirements at LGG.
       </p>
       <img :srcset="planeHero" alt="" role="presentation" />
+    </section>
+
+    <section class="s-solutions">
+      <div class="hr-full"></div>
+      <h3>Our solutions</h3>
+      <h4>RBoss Group operates through its subsidiaries offering a full range of airport handling services&nbsp;:</h4>
+    </section>
+
+    <Slider />
+
+    <section class="s-companies">
+      <div class="hr-full"></div>
+      <h3>The Company</h3>
+      <h4>RBoss group serves as the parent company to different subsidiaries. These subsidiaries, offer the various services detailled above. Here are the 4 structures that compose RBoss group&nbsp;:</h4>
     </section>
   </main>
 </template>
@@ -64,6 +79,7 @@ import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&forma
     bottom: 97px;
     color: var(--text-tertiary);
     z-index: 3;
+
     h1,
     h2 {
       @apply px-20 md:px-60;
@@ -88,9 +104,9 @@ import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&forma
   background-color: var(--bg-primary);
   color: var(--text-tertiary);
   padding-top: 65px;
+
   &__text {
-    // max-width: 50%;
-    @apply text-neg-5-16 font-light lg:max-w-[50%] lg:mt-150;
+    @apply text-neg-5-16 font-light lg:max-w-[50%]  lg:mt-160;
   }
 
   img {
