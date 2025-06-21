@@ -211,12 +211,9 @@ const handleSlideClick = (slideData: any) => {
       max-width: 100%;
       z-index: 5;
       transform: translateX(-50%);
-
-      @screen lg {
-        max-width: 65%;
-      }
-      @apply shadow-2xl;
       cursor: default;
+      @apply shadow-2xl lg:max-w-[65%];
+
       p {
         opacity: 1;
         transition: opacity 0.3s ease 0.5s;

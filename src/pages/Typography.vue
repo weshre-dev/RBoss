@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import Contact from "@/components/Contact.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main>
@@ -27,7 +25,6 @@ import Contact from "@/components/Contact.vue";
         <li class="text-red">Unorder list 3</li>
       </ul>
     </section>
-    <Contact />
   </main>
 </template>
 

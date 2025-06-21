@@ -8,16 +8,13 @@ import { useComponentTranslation } from "@/i18n";
 
 const t = useComponentTranslation("contact");
 
-// Refs pour les éléments DOM
 const titleRef = ref<HTMLElement>();
 const formRowRef = ref<HTMLElement>();
 const textareaRef = ref<HTMLTextAreaElement>();
 
-// États de visibilité pour les animations
 const isVisible = ref(false);
 const isVisible2 = ref(false);
 
-// Configuration du formulaire de contact
 const contactFormConfig = {
   onSuccess: (data: ContactFormData) => {
     console.log("Form submitted successfully:", data);
@@ -29,10 +26,8 @@ const contactFormConfig = {
   // accessKey: 'your-web3forms-access-key'
 };
 
-// Utilisation du composable de formulaire de contact
 const { formData, isSubmitting, isSuccess, serverError, handleChange, handleSubmit, handleInvalid, handleInput } = useContactForm(contactFormConfig);
 
-// Gestionnaire spécifique pour le redimensionnement du textarea
 const handleTextareaInput = (e: Event) => {
   handleInput(e);
   if (textareaRef.value) {
@@ -41,9 +36,7 @@ const handleTextareaInput = (e: Event) => {
   }
 };
 
-// Intersection Observer ou logique d'animation à implémenter
 onMounted(() => {
-  // Simuler l'intersection observer
   setTimeout(() => {
     isVisible.value = true;
   }, 100);

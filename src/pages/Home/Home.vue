@@ -1,11 +1,12 @@
 <script setup lang="ts">
-// import VueSVG from "@/components/VueSVG.vue";
 import bgHero from "@/assets/img/bg-hero.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
+
 import Slider from "./components/Slider.vue";
 import Companies from "./components/Companies.vue";
 import Team from "./components/Team.vue";
-import Contact from "@/components/Contact.vue";
+import Contact from "@/components/sections/Contact.vue";
+
 import { usePageTranslation } from "@/i18n";
 
 const t = usePageTranslation();

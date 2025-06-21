@@ -66,7 +66,7 @@ onBeforeUnmount(() => {
   <section class="s-companies">
     <div class="hr-full"></div>
     <h3>The Company</h3>
-    <h4>RBoss group serves as the parent company to different subsidiaries. These subsidiaries, offer the various services detailled above. Here are the 4 structures that compose RBoss group&nbsp;:</h4>
+    <h4>RBoss group serves as the parent company to different subsidiaries. These subsidiaries, offer the various services detailled above.{{ "\n" }}Here are the 4 structures that compose RBoss group&nbsp;:</h4>
 
     <div class="s-companies__grid" ref="gridRef">
       <div v-for="(item, index) in items" :key="index" class="item" :class="{ 'has-right-neighbor': itemsWithRightNeighbor.has(index) }" ref="itemRefs">

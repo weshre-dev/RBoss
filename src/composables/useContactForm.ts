@@ -27,7 +27,6 @@ export interface UseContactFormReturn {
 }
 
 export const useContactForm = (config: UseContactFormConfig = {}): UseContactFormReturn => {
-  // État réactif du formulaire
   const formData = reactive<ContactFormData>({
     name: "",
     email: "",
@@ -35,12 +34,10 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
     policy: false,
   });
 
-  // États de soumission et d'erreur
   const isSubmitting = ref(false);
   const isSuccess = ref(false);
   const serverError = ref<string | null>(null);
 
-  // Gestionnaire de changement des champs
   const handleChange = (field: keyof ContactFormData, value: string | boolean) => {
     formData[field] = value as never;
     if (serverError.value) {
@@ -48,7 +45,6 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
     }
   };
 
-  // Réinitialiser le formulaire
   const resetForm = () => {
     Object.assign(formData, {
       name: "",
@@ -60,7 +56,6 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
     isSuccess.value = false;
   };
 
-  // Gestionnaire de validation d'erreur
   const handleInvalid = (e: Event, fieldName: string) => {
     e.preventDefault();
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
@@ -90,13 +85,11 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
     }
   };
 
-  // Gestionnaire d'input pour nettoyer les erreurs personnalisées
   const handleInput = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
     target.setCustomValidity("");
   };
 
-  // Gestionnaire de soumission
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
 
@@ -138,7 +131,6 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
       isSuccess.value = true;
       config.onSuccess?.(formData);
 
-      // Auto-reset après 5 secondes
       setTimeout(() => {
         resetForm();
       }, 5000);
