@@ -5,6 +5,8 @@
 @use "utils/forms" as *;
 @use "utils/modals" as *;
 
+@use "components/header" as *;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

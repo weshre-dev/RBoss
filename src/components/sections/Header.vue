@@ -6,7 +6,6 @@ import { useBurgerMenuStore } from "@/stores/useBurgerMenuStore";
 
 const { isMobile } = useBreakpoint();
 const { setLanguage, currentLanguage } = useLanguageSwitcher();
-
 const burgerStore = useBurgerMenuStore();
 
 const switchLanguage = (value: string) => {
@@ -22,9 +21,9 @@ const switchLanguage = (value: string) => {
         <figure class="mr-30">
           <VueSVG src="/svg/logo-rb-white.svg" />
         </figure>
-        <router-link to="/">Solutions</router-link>
-        <router-link to="/typography">Company</router-link>
-        <router-link to="/admin">About us</router-link>
+        <router-link to="/" class="nav-link">Solutions</router-link>
+        <router-link to="/typography" class="nav-link">Company</router-link>
+        <router-link to="/admin" class="nav-link">About us</router-link>
         <div class="menu-lang">
           <button class="btn-lang" @click="burgerStore.toggleLanguageMenu" :class="burgerStore.languageMenuOpen ? 'active' : ''">
             {{ currentLanguage === "en" ? "EN" : "FR" }}
@@ -54,10 +53,12 @@ const switchLanguage = (value: string) => {
         <button class="btn-close" @click="burgerStore.closeMenu" title="close-menu">
           <VueSVG src="/svg/closeX.svg" />
         </button>
-        <router-link to="/" @click="burgerStore.closeMenu">Solutions</router-link>
-        <router-link to="/typography" @click="burgerStore.closeMenu">Company</router-link>
-        <router-link to="/admin" @click="burgerStore.closeMenu">About us</router-link>
-        <div class="menu-lang">
+
+        <router-link to="/" class="nav-link nav-link--mobile" @click="burgerStore.closeMenu">Solutions</router-link>
+        <router-link to="/typography" class="nav-link nav-link--mobile" @click="burgerStore.closeMenu">Company</router-link>
+        <router-link to="/admin" class="nav-link nav-link--mobile" @click="burgerStore.closeMenu">About us</router-link>
+
+        <div class="menu-lang menu-lang--mobile">
           <button class="btn-lang" @click="burgerStore.toggleLanguageMenu" :class="burgerStore.languageMenuOpen ? 'active' : ''">
             <VueSVG src="/svg/chevron-down.svg" />
             {{ currentLanguage === "en" ? "EN" : "FR" }}
@@ -67,6 +68,7 @@ const switchLanguage = (value: string) => {
             <li><button @click="switchLanguage('fr')">Français</button></li>
           </ul>
         </div>
+
         <button class="btn-contact btn-contact--mobile">Contact us</button>
       </div>
     </Teleport>
@@ -93,72 +95,6 @@ const switchLanguage = (value: string) => {
     }
   }
 
-  .menu-lang {
-    position: relative;
-
-    ul {
-      position: absolute;
-      color: var(--text-tertiary);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-
-      &.active {
-        opacity: 1;
-        cursor: pointer;
-        pointer-events: all;
-      }
-    }
-  }
-
-  a {
-    display: flex;
-    height: fit-content;
-    line-height: 1.5;
-    color: var(--text-tertiary);
-    position: relative;
-    transition: color 0.2s ease;
-    @apply text-neg-5-16 font-light;
-
-    &::after {
-      position: absolute;
-      content: "";
-      bottom: 0px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: var(--text-tertiary);
-      scale: 0;
-      transition: scale 0.2s ease;
-    }
-
-    &:hover::after {
-      scale: 1;
-    }
-  }
-
-  .btn-lang {
-    display: flex;
-    align-items: center;
-    height: fit-content;
-    line-height: 1.5;
-    color: var(--text-tertiary);
-    @apply text-neg-5-16 font-light gap-3;
-
-    .vue-svg-container {
-      transform: translateY(2px);
-      transition: transform 0.2s ease;
-    }
-    &.active .vue-svg-container {
-      transform: rotate(180deg);
-    }
-  }
-
-  .btn-contact {
-    background-color: #ffffffbb;
-    @apply text-neg-5-14 font-light px-32 py-12 rounded-full;
-  }
-
   .btn-burger {
     display: none;
     color: var(--text-tertiary);
@@ -171,12 +107,6 @@ const switchLanguage = (value: string) => {
   &.is-mobile {
     .btn-contact {
       display: none;
-
-      &--mobile {
-        display: block;
-        margin-top: auto;
-        margin-bottom: 60px;
-      }
     }
 
     .btn-burger {
@@ -218,57 +148,6 @@ const switchLanguage = (value: string) => {
     color: var(--text-tertiary);
     transform: scale(1.6);
     padding-block: 40px;
-  }
-
-  a {
-    @apply text-neg-5-24 font-light;
-  }
-
-  .btn-lang {
-    display: flex;
-    align-items: center;
-    height: fit-content;
-    line-height: 1.5;
-    color: var(--text-tertiary);
-    @apply text-neg-5-16 font-light gap-3;
-
-    .vue-svg-container {
-      transform: translateY(2px);
-      transition: transform 0.2s ease;
-    }
-    &.active .vue-svg-container {
-      transform: rotate(180deg);
-    }
-  }
-
-  .menu-lang {
-    position: relative;
-
-    ul {
-      position: absolute;
-      right: 0;
-      padding-top: 5px;
-      color: var(--text-tertiary);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-
-      &.active {
-        opacity: 1;
-        cursor: pointer;
-        pointer-events: all;
-      }
-
-      li {
-        text-align: right;
-      }
-    }
-  }
-
-  .btn-contact {
-    background-color: #ffffffbb;
-    color: var(--text-primary);
-    @apply text-neg-5-14 font-light px-32 py-12 rounded-full mt-auto mb-40;
   }
 }
 
