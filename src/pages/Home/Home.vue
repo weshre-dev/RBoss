@@ -123,8 +123,7 @@ useSEO({
 
   img {
     max-width: 1800px;
-    padding-bottom: 100px;
-    @apply rotate-[-20deg] translate-x-[20%] lg:translate-y-[-50%];
+    @apply rotate-[-20deg] translate-x-[20%] lg:translate-y-[-50%] pb-100 lg:pb-0;
   }
 }
 </style>
