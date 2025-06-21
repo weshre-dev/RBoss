@@ -7,9 +7,19 @@ import Companies from "./components/Companies.vue";
 import Team from "./components/Team.vue";
 import Contact from "@/components/sections/Contact.vue";
 
+import { useSEO } from "@/composables/useSEO";
+
 import { usePageTranslation } from "@/i18n";
 
 const t = usePageTranslation();
+
+useSEO({
+  title: "Home",
+  description: "Your trusted partner for aviation support solutions",
+  keywords: ["partner", "rboss", "logistic", "aviation"],
+  url: "https://rboss.eu/",
+  image: "/images/og-home.png",
+});
 </script>
 
 <template>
