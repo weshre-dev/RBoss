@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import bgHero from "@/assets/img/bg-hero.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
-
 import Slider from "./components/Slider.vue";
 import Companies from "./components/Companies.vue";
 import Team from "./components/Team.vue";
 import Contact from "@/components/sections/Contact.vue";
-
+import ParallaxImage from "@/components/ParallaxImage.vue";
 import { useSEO } from "@/composables/useSEO";
-
 import { usePageTranslation } from "@/i18n";
+import { useBreakpoint } from "@/composables/useBreakpoints";
+import { computed } from "vue";
 
 const t = usePageTranslation();
+const { isDesktop } = useBreakpoint();
+
+const planeBaseTransform = computed(() => {
+  if (isDesktop.value) {
+    return "rotate(-20deg) translateX(30%) translateY(-50%)";
+  } else {
+    return "rotate(-20deg) translateX(30%) translateY(15%)";
+  }
+});
 
 useSEO({
   title: "Home",
@@ -42,7 +51,8 @@ useSEO({
       <p class="s-about__text reset">
         {{ t("about_text") }}
       </p>
-      <img :srcset="planeHero" alt="" role="presentation" />
+
+      <ParallaxImage :srcset="planeHero" alt="" role="presentation" class="plane-image" :move-x="-100" :move-y="-30" :zoom="0.4" :base-transform="planeBaseTransform" />
     </section>
 
     <section class="s-solutions">
@@ -52,11 +62,8 @@ useSEO({
     </section>
 
     <Slider />
-
     <Companies />
-
     <Team />
-
     <Contact />
   </main>
 </template>
@@ -70,6 +77,7 @@ useSEO({
   background: linear-gradient(to bottom, transparent 0%, #212121 100%);
   z-index: 2;
 }
+
 .s-hero {
   position: relative;
   background-color: var(--bg-primary);
@@ -95,14 +103,17 @@ useSEO({
     h2 {
       @apply px-20 md:px-60;
     }
+
     h2 {
       max-width: 700px;
       @apply 2xl:max-w-1000;
     }
+
     h1 {
       display: flex;
       align-items: center;
       gap: 30px;
+
       .line {
         width: 15%;
         height: 3px;
@@ -112,18 +123,21 @@ useSEO({
     }
   }
 }
+
 .s-about {
   background-color: var(--bg-primary);
   color: var(--text-tertiary);
   padding-top: 65px;
 
   &__text {
-    @apply text-neg-5-16 font-light lg:max-w-[50%]  lg:mt-160;
+    z-index: 2;
+    @apply text-neg-5-16 font-light lg:max-w-[50%] lg:mt-160;
   }
 
-  img {
+  .plane-image {
+    z-index: 1;
     max-width: 1800px;
-    @apply rotate-[-20deg] translate-x-[20%] lg:translate-y-[-50%] pb-100 lg:pb-0;
+    @apply pb-100 lg:pb-0;
   }
 }
 </style>
