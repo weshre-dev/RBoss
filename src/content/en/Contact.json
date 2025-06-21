@@ -1,0 +1,17 @@
+{
+    "discuss": "Meet us, partner with us",
+    "question": "If you have a question, need support, or just want to say hello, feel free to drop us an email below. But if you're reaching out about a new project, go ahead and fill out the form and we'll get back to you with details on how we can bring your idea to life.",
+    "form": {
+        "title": "Get in touch",
+        "name": "Name",
+        "company":"Company",
+        "subject":"Subject",
+        "email": "Email",
+        "message": "Message",
+        "privacy": "Accept Private Policy",
+        "privacy_text": "I accept the",
+        "privacy_link": "privacy policy",
+        "sending": "Sending...",
+        "submit": "Submit"
+    }
+}

@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { useLanguageSwitcher } from "@/composables/useLanguageSwitcher";
 import VueSVG from "@/components/VueSVG.vue";
+import { ref } from "vue";
 
 const { setLanguage, currentLanguage } = useLanguageSwitcher();
+const languageMenu = ref(false);
 
-const toggleLanguage = () => {
-  setLanguage(currentLanguage.value === "en" ? "fr" : "en");
+const switchLanguage = (value: string) => {
+  setLanguage((currentLanguage.value = value));
+  languageMenu.value = false;
+};
+
+const toggleLanguageMenu = () => {
+  languageMenu.value = !languageMenu.value;
 };
 </script>
 
@@ -19,7 +26,16 @@ const toggleLanguage = () => {
         <router-link to="/">Solutions</router-link>
         <router-link to="/typography">Company</router-link>
         <router-link to="/admin">About us</router-link>
-        <button class="btn-lang" @click="toggleLanguage">Switch to {{ currentLanguage === "en" ? "Français" : "English" }}</button>
+        <div class="menu-lang">
+          <button class="btn-lang" @click="toggleLanguageMenu">
+            {{ currentLanguage === "en" ? "EN" : "FR" }}
+            <VueSVG src="/svg/chevron-down.svg" />
+          </button>
+          <ul :class="languageMenu ? 'active' : ''">
+            <li><button @click="switchLanguage('en')">English</button></li>
+            <li><button @click="switchLanguage('fr')">Français</button></li>
+          </ul>
+        </div>
       </nav>
       <button class="btn-contact">Contact us</button>
     </div>
@@ -41,6 +57,22 @@ const toggleLanguage = () => {
     @apply pt-43 px-20 md:px-30;
     nav {
       @apply flex items-center gap-21 text-20;
+    }
+  }
+
+  .menu-lang {
+    position: relative;
+    ul {
+      position: absolute;
+      color: var(--text-tertiary);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      &.active {
+        opacity: 1;
+        cursor: pointer;
+        pointer-events: all;
+      }
     }
   }
 
@@ -72,16 +104,20 @@ const toggleLanguage = () => {
   }
   .btn-lang {
     display: flex;
+    align-items: center;
     height: fit-content;
     line-height: 1.5;
     color: var(--text-tertiary);
-    @apply text-neg-5-16 font-light;
+    @apply text-neg-5-16 font-light gap-3;
+    .vue-svg-container {
+      transform: translateY(2px);
+    }
   }
 
   .btn-contact {
     background-color: #ffffffbb;
 
-    @apply text-neg-5-16 font-light px-32 py-12 rounded-full;
+    @apply text-neg-5-14 font-light px-32 py-12 rounded-full;
   }
 }
 </style>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { useI18n as useVueI18n } from "vue-i18n";
-import { usePageTranslation } from "@/i18n";
 import VueSVG from "@/components/VueSVG.vue";
 
 import team1 from "@/assets/img/SectionTeam/dummy.png?w=200;300&format=webp&as=srcset";
 import team2 from "@/assets/img/SectionTeam/dummy.png?w=200;300&format=webp&as=srcset";
 
 import { ref } from "vue";
+import { useComponentTranslation } from "@/i18n";
+
+const t = useComponentTranslation("team");
 
 const activeIndex = ref<number | null>(null);
 

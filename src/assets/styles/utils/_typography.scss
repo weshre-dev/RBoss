@@ -35,7 +35,7 @@
       white-space: pre-line;
       &:not(.reset) {
         line-height: 1.07;
-        @apply text-neg-5-36 md:text-neg-5-50 lg:text-neg-5-70;
+        @apply text-neg-5-36 md:text-neg-5-50 2xl:text-neg-5-70;
       }
     }
 
@@ -44,7 +44,7 @@
       white-space: pre-line;
       &:not(.reset) {
         line-height: 1.35;
-        @apply text-neg-5-28 md:text-neg-5-36 lg:text-neg-5-55 font-light;
+        @apply text-neg-5-28 md:text-neg-5-36 2xl:text-neg-5-55 font-light;
       }
     }
 

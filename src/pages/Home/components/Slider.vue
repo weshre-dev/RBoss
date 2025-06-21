@@ -8,7 +8,9 @@ import slider3 from "@/assets/img/HomeSlider/slider-3.png?w=150;350;700&format=w
 import slider4 from "@/assets/img/HomeSlider/slider-4.png?w=150;350;700&format=webp&as=srcset";
 import slider5 from "@/assets/img/HomeSlider/slider-5.png?w=150;350;700&format=webp&as=srcset";
 
-const t = usePageTranslation();
+import { useComponentTranslation } from "@/i18n";
+
+const t = useComponentTranslation("slider");
 
 const currentSlideIndex = ref(0);
 

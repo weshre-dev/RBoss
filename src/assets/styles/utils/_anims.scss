@@ -162,6 +162,24 @@
   }
 }
 
+@keyframes bounceLeftToRight {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(15px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  75% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 //animate classes
 
 .animate-left-to-right {

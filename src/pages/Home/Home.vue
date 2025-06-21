@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { useI18n as useVueI18n } from "vue-i18n";
-import { usePageTranslation } from "@/i18n";
-import VueSVG from "@/components/VueSVG.vue";
+// import VueSVG from "@/components/VueSVG.vue";
 import bgHero from "@/assets/img/bg-hero.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import planeHero from "@/assets/img/plane.png?w=300;500;800;1000;1300;1500&format=webp&as=srcset";
 import Slider from "./components/Slider.vue";
 import Companies from "./components/Companies.vue";
-import SectionTeam from "./components/SectionTeam.vue";
+import Team from "./components/Team.vue";
 import Contact from "@/components/Contact.vue";
+import { usePageTranslation } from "@/i18n";
+
+const t = usePageTranslation();
 </script>
 
 <template>
@@ -15,10 +16,10 @@ import Contact from "@/components/Contact.vue";
     <section class="s-hero reset">
       <div class="s-hero__content">
         <h1>
-          RBoss Group
+          {{ t("hero_title") }}
           <div class="line"></div>
         </h1>
-        <h2>Your trusted partner for aviation support solutions</h2>
+        <h2>{{ t("hero_text") }}</h2>
       </div>
       <div class="decor-gradient"></div>
       <img :srcset="bgHero" alt="" role="presentation" />
@@ -26,11 +27,9 @@ import Contact from "@/components/Contact.vue";
 
     <section class="s-about">
       <div class="hr-full hr-full--white"></div>
-      <h3>About us</h3>
+      <h3>{{ t("about") }}</h3>
       <p class="s-about__text reset">
-        At RBoss Group, we deliver top-tier handling services at Liège Airport, combining operational excellence, safety, and innovation to support airlines, cargo operators, and airport stakeholders. With a focus on seamless service and strong
-        partnerships, we ensure your operations run smoothly from ground to air.{{ "\n\n" }}The group serves as the parent company to different subsidiaries. Through its subsidiaries, RBoss Group offers a wide range of services, from customs support
-        to manpower solutions, making it a one-stop solution for all handling requirements at LGG.
+        {{ t("about_text") }}
       </p>
       <img :srcset="planeHero" alt="" role="presentation" />
     </section>
@@ -45,7 +44,7 @@ import Contact from "@/components/Contact.vue";
 
     <Companies />
 
-    <SectionTeam />
+    <Team />
 
     <Contact />
   </main>
@@ -56,8 +55,8 @@ import Contact from "@/components/Contact.vue";
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 97px;
-  background: linear-gradient(to bottom, transparent 0%, transparent 50%, #212121 100%);
+  height: 200px;
+  background: linear-gradient(to bottom, transparent 0%, #212121 100%);
   z-index: 2;
 }
 .s-hero {
@@ -66,9 +65,7 @@ import Contact from "@/components/Contact.vue";
   max-width: 2050px;
   min-height: 100vh;
   margin-inline: auto;
-  @screen lg {
-    min-height: 135vh;
-  }
+
   img {
     position: absolute;
     height: 100%;
@@ -79,7 +76,7 @@ import Contact from "@/components/Contact.vue";
 
   &__content {
     position: absolute;
-    bottom: 97px;
+    bottom: 20px;
     color: var(--text-tertiary);
     z-index: 3;
 
@@ -88,7 +85,8 @@ import Contact from "@/components/Contact.vue";
       @apply px-20 md:px-60;
     }
     h2 {
-      max-width: 800px;
+      max-width: 700px;
+      @apply 2xl:max-w-1000;
     }
     h1 {
       display: flex;

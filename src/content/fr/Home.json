@@ -1,9 +1,6 @@
 {
-    "helmet": "WeShre Studio: We code - You grow",
-    "title": "Page d'accueil de test!",
-    "description": "We help you build websites that don’t just look great — they work great too. Whether you need a landing page, an e-commerce platform, or something totally custom, our team handles everything from design to launch. Clean code, smart UX, and real results — all in one place.",
-    "philosophy": {
-      "title": "Our Philosophy",
-      "text": "WeShre Studio was born inside WeShre, our own social event platform — so we know what it’s like to build something from the ground up. We’re not just service providers, we’re creators too. That’s why we understand your challenges, speak your language, and design with your goals in mind. We build with the same care and energy we put into our own product — because we’ve been in your shoes."
-    }
+    "hero_title": "RBoss Group",
+    "hero_text": "Votre partenaire de confiance pour les solutions de support aéronautique",
+    "about": "À propos de nous",
+    "about_text": "Chez RBoss Group, nous fournissons des services de manutention de premier plan à l'aéroport de Liège, alliant excellence opérationnelle, sécurité et innovation pour soutenir les compagnies aériennes, les opérateurs de fret et les parties prenantes aéroportuaires. En mettant l'accent sur un service fluide et des partenariats solides, nous veillons à ce que vos opérations se déroulent sans accroc du sol à l'air.\n\nLe groupe sert de société mère à différentes filiales. Par l'intermédiaire de ses filiales, RBoss Group offre une large gamme de services, du support douanier aux solutions de main-d'œuvre, ce qui en fait une solution complète pour tous les besoins de manutention à LGG."
 }

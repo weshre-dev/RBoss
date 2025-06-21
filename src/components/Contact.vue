@@ -1,89 +1,40 @@
+div
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
-import { useI18n as useVueI18n } from "vue-i18n";
-import { usePageTranslation } from "@/i18n";
+import { ref, onMounted } from "vue";
 import VueSVG from "@/components/VueSVG.vue";
+import SuccessMessage from "@/components/SuccessMessage.vue";
+import { useContactForm, type ContactFormData } from "@/composables/useContactForm";
+import { useComponentTranslation } from "@/i18n";
 
-// Composition API setup
-const { t } = useVueI18n();
+const t = useComponentTranslation("contact");
 
 // Refs pour les éléments DOM
 const titleRef = ref<HTMLElement>();
 const formRowRef = ref<HTMLElement>();
 const textareaRef = ref<HTMLTextAreaElement>();
 
-// État réactif du formulaire
-const formData = reactive({
-  name: "",
-  email: "",
-  message: "",
-  policy: false,
-});
-
-// États de soumission et d'erreur
-const isSubmitting = ref(false);
-const isSuccess = ref(false);
-const serverError = ref("");
-
 // États de visibilité pour les animations
 const isVisible = ref(false);
 const isVisible2 = ref(false);
 
-// Gestionnaires d'événements
-const handleChange = (field: keyof typeof formData, value: string | boolean) => {
-  formData[field] = value as never;
+// Configuration du formulaire de contact
+const contactFormConfig = {
+  onSuccess: (data: ContactFormData) => {
+    console.log("Form submitted successfully:", data);
+  },
+  onError: (error: Error) => {
+    console.error("Form submission error:", error);
+  },
+  // Optionnel : ajouter votre clé API Web3Forms
+  // accessKey: 'your-web3forms-access-key'
 };
 
-const handleSubmit = async (event: Event) => {
-  event.preventDefault();
+// Utilisation du composable de formulaire de contact
+const { formData, isSubmitting, isSuccess, serverError, handleChange, handleSubmit, handleInvalid, handleInput } = useContactForm(contactFormConfig);
 
-  if (!formData.policy) {
-    serverError.value = t("form.privacy_required");
-    return;
-  }
-
-  isSubmitting.value = true;
-  serverError.value = "";
-
-  try {
-    // Logique de soumission du formulaire
-    // await submitForm(formData)
-
-    isSuccess.value = true;
-
-    // Reset du formulaire après succès
-    Object.assign(formData, {
-      name: "",
-      email: "",
-      message: "",
-      policy: false,
-    });
-  } catch (error) {
-    serverError.value = t("form.error_generic");
-  } finally {
-    isSubmitting.value = false;
-  }
-};
-
-const handleInvalid = (event: Event, field: string) => {
-  event.preventDefault();
-  const target = event.target as HTMLInputElement | HTMLTextAreaElement;
-
-  if (field === "email" && target.validity.typeMismatch) {
-    target.setCustomValidity(t("form.email_invalid"));
-  } else if (target.validity.tooShort) {
-    target.setCustomValidity(t("form.too_short"));
-  } else if (target.validity.valueMissing) {
-    target.setCustomValidity(t("form.required"));
-  }
-};
-
-const handleInputValidation = (event: Event) => {
-  const target = event.target as HTMLInputElement | HTMLTextAreaElement;
-  target.setCustomValidity("");
-};
-
-const handleTextareaInput = () => {
+// Gestionnaire spécifique pour le redimensionnement du textarea
+const handleTextareaInput = (e: Event) => {
+  handleInput(e);
   if (textareaRef.value) {
     textareaRef.value.style.height = "auto";
     textareaRef.value.style.height = textareaRef.value.scrollHeight + "px";
@@ -91,9 +42,6 @@ const handleTextareaInput = () => {
 };
 
 // Intersection Observer ou logique d'animation à implémenter
-// Pour l'exemple, on active les animations au montage
-import { onMounted } from "vue";
-
 onMounted(() => {
   // Simuler l'intersection observer
   setTimeout(() => {
@@ -109,13 +57,12 @@ onMounted(() => {
 <template>
   <section id="contact" class="s-contact">
     <div class="hr-full"></div>
-    <h3 ref="titleRef" class="s-contact__title">Meet us, partner with us</h3>
+    <h3 ref="titleRef" class="s-contact__title">{{ t("discuss") }}</h3>
 
     <div class="s-contact__content">
       <div class="s-contact__text">
         <p class="reset">
-          If you have a question, need support, or just want to say hello, feel free to drop us an email below. But if you're reaching out about a new project, go ahead and fill out the form and we'll get back to you with details on how we can bring
-          your idea to life.
+          {{ t("question") }}
         </p>
         <a href="mailto:info@rboss.eu">
           <figure class="text-text-primary">
@@ -127,30 +74,64 @@ onMounted(() => {
 
       <div class="s-contact__form">
         <form @submit="handleSubmit">
-          <div class="form-row" ref="formRowRef">
+          <div class="form-row form-row--half" ref="formRowRef">
             <label for="name" class="sr-only">{{ t("form.name") }}</label>
             <input
               type="text"
               :placeholder="t('form.name') + '*'"
               id="name"
               name="name"
-              v-model="formData.name"
+              :value="formData.name"
+              @input="(e) => handleChange('name', (e.target as HTMLInputElement).value)"
               @invalid="(e) => handleInvalid(e, 'name')"
-              @input="handleInputValidation"
               :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
               :disabled="isSubmitting"
               required
               minlength="2"
             />
+          </div>
+          <div class="form-row form-row--half" ref="formRowRef">
+            <label for="name" class="sr-only">{{ t("form.company") }}</label>
+            <input
+              type="text"
+              :placeholder="t('form.company') + '*'"
+              id="company"
+              name="company"
+              :value="formData.company"
+              @input="(e) => handleChange('company', (e.target as HTMLInputElement).value)"
+              @invalid="(e) => handleInvalid(e, 'company')"
+              :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
+              :disabled="isSubmitting"
+              required
+              minlength="2"
+            />
+          </div>
+
+          <div class="form-row">
             <label for="email" class="sr-only">{{ t("form.email") }}</label>
             <input
               type="email"
               :placeholder="t('form.email') + '*'"
               id="email"
               name="email"
-              v-model="formData.email"
+              :value="formData.email"
+              @input="(e) => handleChange('email', (e.target as HTMLInputElement).value)"
               @invalid="(e) => handleInvalid(e, 'email')"
-              @input="handleInputValidation"
+              :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
+              :disabled="isSubmitting"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="subject" class="sr-only">{{ t("form.subject") }}</label>
+            <input
+              type="subject"
+              :placeholder="t('form.subject') + '*'"
+              id="subject"
+              name="subject"
+              :value="formData.subject"
+              @input="(e) => handleChange('subject', (e.target as HTMLInputElement).value)"
+              @invalid="(e) => handleInvalid(e, 'subject')"
               :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
               :disabled="isSubmitting"
               required
@@ -164,14 +145,12 @@ onMounted(() => {
             id="message"
             :placeholder="t('form.message') + '*'"
             ref="textareaRef"
-            v-model="formData.message"
+            :value="formData.message"
+            @input="(e) => {
+              handleChange('message', (e.target as HTMLTextAreaElement).value);
+              handleTextareaInput(e);
+            }"
             @invalid="(e) => handleInvalid(e, 'message')"
-            @input="
-              (e) => {
-                handleInputValidation(e);
-                handleTextareaInput();
-              }
-            "
             rows="1"
             :disabled="isSubmitting"
             required
@@ -185,8 +164,8 @@ onMounted(() => {
             </div>
           </div>
 
-          <button type="submit" class="btn-primary" :disabled="isSubmitting">
-            <span>{{ isSubmitting ? "sending.." : "submit" }}</span>
+          <button type="submit" class="btn-primary ml-auto" :disabled="isSubmitting">
+            <span>{{ isSubmitting ? t("form.sending") : t("form.submit") }}</span>
             <VueSVG src="/svg/plane.svg" />
           </button>
         </form>
@@ -197,18 +176,11 @@ onMounted(() => {
 
 <style lang="scss">
 .s-contact {
-  .separator {
-    display: flex;
-    width: 100%;
-    background-color: var(--text-primary);
-    height: 2px;
-    @apply mb-40 sm:mb-60 lg:mb-120;
-  }
-
+  padding-bottom: 80px;
   &__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 70px;
     @media (max-width: 1024px) {
       grid-template-columns: 1fr;
     }
@@ -216,16 +188,17 @@ onMounted(() => {
 
   &__text {
     p {
-      @apply lg:text-neg-5-20 text-neg-5-16;
+      max-width: 600px;
+      @apply lg:text-neg-5-20 text-neg-5-16 font-light;
     }
 
     a {
       transition: color 0.2s ease;
-      @apply flex items-center gap-20 mt-40 mb-30 underline text-16 lg:text-[24px];
+      @apply flex items-center gap-20 mt-40 mb-30 text-neg-5-18 lg:text-neg-5-24 font-light;
 
       svg {
         animation: bounceLeftToRight 2.5s infinite;
-        @apply w-[18px] sm:w-[50px] lg:w-70;
+        @apply w-[50px] lg:w-70;
       }
 
       &:hover {
@@ -245,12 +218,33 @@ onMounted(() => {
       display: flex;
       width: 100%;
       gap: 35px;
-      @apply mb-80 sm:mb-120 lg:mb-150;
+      @apply mb-50 md:mb-80;
+      &--half {
+        @apply lg:max-w-[50%];
+      }
+    }
+
+    .policy-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      @apply mb-40 sm:mb-60 lg:mb-80;
+
+      .policy-label {
+        @apply text-12 sm:text-14 lg:text-16;
+
+        .link {
+          text-decoration: underline;
+          transition: color 0.2s ease;
+          &:hover {
+            color: var(--blue-color);
+          }
+        }
+      }
     }
 
     input,
     textarea {
-      font-weight: 500;
       width: 100%;
       padding-bottom: 15px;
       background-color: transparent;
@@ -260,7 +254,10 @@ onMounted(() => {
       &:focus {
         outline: none;
       }
-      @apply text-12 sm:text-16 lg:text-[24px];
+      &::placeholder {
+        color: var(--text-primary);
+      }
+      @apply text-neg-5-14 lg:text-neg-5-16 font-light;
     }
 
     #policy {
@@ -298,7 +295,6 @@ onMounted(() => {
     }
 
     .link {
-      text-decoration: underline;
       transition: color 0.2s ease;
       &:hover {
         color: var(--blue-color);

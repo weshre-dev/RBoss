@@ -1,0 +1,17 @@
+{
+    "discuss": "Contactez-nous",
+    "question": "Si vous avez une question, besoin d’aide, ou simplement envie de dire bonjour, n’hésitez pas à nous écrire via l’email ci-dessous. Pour toute demande concernant un nouveau projet, merci de remplir le formulaire : nous vous répondrons rapidement avec toutes les infos pour donner vie à votre idée.",
+    "form": {
+        "title": "Écrivez-nous",
+        "name": "Nom",
+        "email": "Email",
+        "company":"Entreprise",
+        "subject":"Sujet",
+        "message": "Message",
+        "privacy": "Accept Private Policy",
+        "privacy_text": "J'accepte la",
+        "privacy_link": "politique de confidentialité",
+        "sending": "Envoi...",
+        "submit": "Envoyer"
+    }
+}

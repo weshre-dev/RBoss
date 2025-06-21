@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import VueSVG from "@/components/VueSVG.vue";
+import { useComponentTranslation } from "@/i18n";
+
+const t = useComponentTranslation("companies");
 
 const gridRef = ref<HTMLElement | null>(null);
 const itemRefs = ref<HTMLElement[]>([]);

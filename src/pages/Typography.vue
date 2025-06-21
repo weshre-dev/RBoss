@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Contact from "@/components/Contact.vue";
+</script>
+
 <template>
   <main>
     <section>
@@ -23,6 +27,7 @@
         <li class="text-red">Unorder list 3</li>
       </ul>
     </section>
+    <Contact />
   </main>
 </template>
 
