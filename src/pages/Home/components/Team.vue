@@ -4,16 +4,9 @@ import VueSVG from "@/components/VueSVG.vue";
 import team1 from "@/assets/img/SectionTeam/reda.png?w=200;300&format=webp&as=srcset";
 import team2 from "@/assets/img/SectionTeam/dummy.png?w=200;300&format=webp&as=srcset";
 
-import { ref } from "vue";
-import { useComponentTranslation } from "@/i18n";
+// import { useComponentTranslation } from "@/i18n";
 
-const t = useComponentTranslation("team");
-
-const activeIndex = ref<number | null>(null);
-
-function activateInfo(index: number) {
-  activeIndex.value = index;
-}
+// const t = useComponentTranslation("team");
 
 const members = [
   {
@@ -49,7 +42,7 @@ const members = [
             <img :srcset="team.img" :alt="team.name + ' photo'" />
           </figure>
           <h4 class="reset">{{ team.name }}</h4>
-          <h5>{{ team.title }}</h5>
+          <h5 class="reset">{{ team.title }}</h5>
         </div>
 
         <div class="s-team__infos">
@@ -145,7 +138,7 @@ const members = [
     @apply text-neg-5-24 font-medium mt-15;
   }
   h5 {
-    @apply text-neg-5-16 font-light;
+    @apply text-neg-5-16 font-light text-text-tertiary;
   }
 }
 </style>

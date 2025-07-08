@@ -24,7 +24,7 @@ export interface UseContactFormReturn {
   handleSubmit: () => Promise<void>;
   handleChange: (field: keyof ContactFormData, value: string | boolean) => void;
   handleInput: (e: Event) => void;
-  handleInvalid: (e: Event, field: keyof ContactFormData) => void;
+  // handleInvalid: (e: Event, field: keyof ContactFormData) => void;
   resetForm: () => void;
 }
 
@@ -53,11 +53,6 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
     const field = target.name as keyof ContactFormData;
     handleChange(field, target.value);
-  };
-
-  const handleInvalid = (e: Event, field: keyof ContactFormData) => {
-    // Ne pas empêcher le comportement par défaut du navigateur
-    // Le navigateur affichera son propre message d'erreur
   };
 
   const resetForm = () => {
@@ -126,7 +121,7 @@ export const useContactForm = (config: UseContactFormConfig = {}): UseContactFor
     handleSubmit,
     handleChange,
     handleInput,
-    handleInvalid,
+    // handleInvalid,
     resetForm,
   };
 };

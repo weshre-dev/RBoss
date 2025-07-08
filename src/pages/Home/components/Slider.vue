@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { usePageTranslation } from "@/i18n";
+// import { usePageTranslation } from "@/i18n";
 import VueSVG from "@/components/VueSVG.vue";
 import slider1 from "@/assets/img/HomeSlider/slider-1.png?w=150;350;700&format=webp&as=srcset";
 import slider2 from "@/assets/img/HomeSlider/slider-2.png?w=150;350;700&format=webp&as=srcset";
@@ -12,9 +12,9 @@ import company2 from "@/assets/img/HomeSlider/company-2.png?w=80;120;179&format=
 import company3 from "@/assets/img/HomeSlider/company-3.png?w=80;120;179&format=webp&as=srcset";
 import company4 from "@/assets/img/HomeSlider/company-4.png?w=80;120;179&format=webp&as=srcset";
 
-import { useComponentTranslation } from "@/i18n";
+// import { useComponentTranslation } from "@/i18n";
 
-const t = useComponentTranslation("slider");
+// const t = useComponentTranslation("slider");
 
 const currentSlideIndex = ref(0);
 
@@ -93,20 +93,6 @@ const orderedSlides = computed(() => {
     // isVisible: Math.abs(index - currentSlideIndex.value) <= 2 || Math.abs(index - currentSlideIndex.value) >= slides.length - 2,
   }));
 });
-
-const touchStartX = ref(0);
-const touchStartY = ref(0);
-const isSwiping = ref(false);
-
-const goToPrevSlide = () => {
-  const newIndex = currentSlideIndex.value === 0 ? slides.length - 1 : currentSlideIndex.value - 1;
-  goToSlide(newIndex);
-};
-
-const goToNextSlide = () => {
-  const newIndex = currentSlideIndex.value === slides.length - 1 ? 0 : currentSlideIndex.value + 1;
-  goToSlide(newIndex);
-};
 
 const handleSlideClick = (slideData: any) => {
   if (slideData.originalIndex !== currentSlideIndex.value) {

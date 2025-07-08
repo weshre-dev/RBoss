@@ -24,7 +24,7 @@ const contactFormConfig = {
   accessKey: "583c4c93-d95e-4ae0-8b50-61bfd0171571",
 };
 
-const { formData, isSubmitting, isSuccess, serverError, handleChange, handleSubmit, handleInvalid, handleInput } = useContactForm(contactFormConfig);
+const { formData, isSubmitting, isSuccess, serverError, handleChange, handleSubmit, handleInput } = useContactForm(contactFormConfig);
 
 const handleTextareaInput = (e: Event) => {
   handleInput(e);
@@ -74,7 +74,6 @@ onMounted(() => {
               name="name"
               :value="formData.name"
               @input="(e) => handleChange('name', (e.target as HTMLInputElement).value)"
-              @invalid="(e) => handleInvalid(e, 'name')"
               :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
               :disabled="isSubmitting"
               required
@@ -90,7 +89,6 @@ onMounted(() => {
               name="company"
               :value="formData.company"
               @input="(e) => handleChange('company', (e.target as HTMLInputElement).value)"
-              @invalid="(e) => handleInvalid(e, 'company')"
               :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
               :disabled="isSubmitting"
               required
@@ -107,7 +105,6 @@ onMounted(() => {
               name="email"
               :value="formData.email"
               @input="(e) => handleChange('email', (e.target as HTMLInputElement).value)"
-              @invalid="(e) => handleInvalid(e, 'email')"
               :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
               :disabled="isSubmitting"
               required
@@ -122,7 +119,6 @@ onMounted(() => {
               name="subject"
               :value="formData.subject"
               @input="(e) => handleChange('subject', (e.target as HTMLInputElement).value)"
-              @invalid="(e) => handleInvalid(e, 'subject')"
               :class="{ 'animate-from-bottom': isVisible2, 'opacity-0': !isVisible2 }"
               :disabled="isSubmitting"
               required
@@ -141,7 +137,6 @@ onMounted(() => {
               handleChange('message', (e.target as HTMLTextAreaElement).value);
               handleTextareaInput(e);
             }"
-            @invalid="(e) => handleInvalid(e, 'message')"
             rows="1"
             :disabled="isSubmitting"
             required
@@ -193,7 +188,7 @@ onMounted(() => {
       }
 
       &:hover {
-        color: var(--blue-color);
+        color: var(--red-color);
       }
     }
 
@@ -228,7 +223,7 @@ onMounted(() => {
           text-decoration: underline;
           transition: color 0.2s ease;
           &:hover {
-            color: var(--blue-color);
+            color: var(--red-color);
           }
         }
       }
@@ -265,7 +260,7 @@ onMounted(() => {
       &::after {
         position: absolute;
         content: "";
-        background-color: var(--blue-color);
+        background-color: var(--red-color);
         opacity: 0;
         scale: 0;
         transition: opacity 0.2s ease, scale 0.2s ease;
@@ -288,7 +283,7 @@ onMounted(() => {
     .link {
       transition: color 0.2s ease;
       &:hover {
-        color: var(--blue-color);
+        color: var(--red-color);
       }
     }
   }
