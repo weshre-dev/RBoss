@@ -1,13 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <footer>
-    <hr class="mb-20" />
-    <div class="flex w-full justify-between px-40">
-      <p>Powered by Vite + Vue3 + Typescript + Vega Missile</p>
-      <p>Satellisé par &copy; <a href="https://studio.weshre.com">WeShre Studio</a> 2025</p>
-    </div>
-  </footer>
+  <footer></footer>
 </template>
 
 <style scoped lang="scss">

@@ -1,4 +1,3 @@
-div
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import VueSVG from "@/components/VueSVG.vue";
@@ -22,8 +21,7 @@ const contactFormConfig = {
   onError: (error: Error) => {
     console.error("Form submission error:", error);
   },
-  // Optionnel : ajouter votre clé API Web3Forms
-  // accessKey: 'your-web3forms-access-key'
+  accessKey: "583c4c93-d95e-4ae0-8b50-61bfd0171571",
 };
 
 const { formData, isSubmitting, isSuccess, serverError, handleChange, handleSubmit, handleInvalid, handleInput } = useContactForm(contactFormConfig);
@@ -66,7 +64,7 @@ onMounted(() => {
       </div>
 
       <div class="s-contact__form">
-        <form @submit="handleSubmit">
+        <form @submit.prevent="handleSubmit">
           <div class="form-row form-row--half" ref="formRowRef">
             <label for="name" class="sr-only">{{ t("form.name") }}</label>
             <input
