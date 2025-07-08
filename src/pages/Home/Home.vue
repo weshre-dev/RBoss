@@ -105,8 +105,8 @@ useSEO({
     }
 
     h2 {
-      max-width: 700px;
-      @apply 2xl:max-w-1000;
+      max-width: 800px;
+      @apply 2xl:max-w-[1100px];
     }
 
     h1 {

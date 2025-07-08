@@ -7,6 +7,10 @@ import slider2 from "@/assets/img/HomeSlider/slider-2.png?w=150;350;700&format=w
 import slider3 from "@/assets/img/HomeSlider/slider-3.png?w=150;350;700&format=webp&as=srcset";
 import slider4 from "@/assets/img/HomeSlider/slider-4.png?w=150;350;700&format=webp&as=srcset";
 import slider5 from "@/assets/img/HomeSlider/slider-5.png?w=150;350;700&format=webp&as=srcset";
+import company1 from "@/assets/img/HomeSlider/company-1.png?w=80;120;179&format=webp&as=srcset";
+import company2 from "@/assets/img/HomeSlider/company-2.png?w=80;120;179&format=webp&as=srcset";
+import company3 from "@/assets/img/HomeSlider/company-3.png?w=80;120;179&format=webp&as=srcset";
+import company4 from "@/assets/img/HomeSlider/company-4.png?w=80;120;179&format=webp&as=srcset";
 
 import { useComponentTranslation } from "@/i18n";
 
@@ -18,32 +22,37 @@ const slides = [
   {
     id: 1,
     title: "Handling",
+    subtitle: "Reliable Ground Handling Services",
     image: slider1,
-    text: "At RBoss Group, we deliver top-tier handling services at Liège Airport, combining operational excellence, safety, and innovation to support airlines, cargo operators, and airport stakeholders. With a focus on seamless service and strong partnerships, we ensure your operations run smoothly from ground to air.",
+    text: "We provide reliable and secure cargo handling solutions for all types of freight. Our experienced team ensures fast turnaround times, careful cargo management, and smooth coordination from arrival to departure — keeping your goods moving safely and on schedule",
   },
   {
     id: 2,
     title: "Logistics",
+    subtitle: "Integrated Logistics Services",
     image: slider2,
-    text: "Texte du slide 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam dolore tempora eius reiciendis, ab, consequuntur, quas id sequi commodi molestiae inventore ad beatae soluta repellendus obcaecati? Accusantium nisi dolor quaerat.",
+    text: "We offer end-to-end logistics solutions to streamline your supply chain. From warehousing and customs clearance to transport coordination and real-time tracking, our dedicated team ensures your cargo moves efficiently, securely, and on time",
   },
   {
     id: 3,
     title: "E-commerce",
+    subtitle: "E-Commerce Logistics Solutions",
     image: slider3,
-    text: "Texte du slide 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam est voluptatem sit aliquid vel quas qui dolorum accusantium sed aperiam recusandae voluptatibus ut, illo nobis ab itaque. Est, nulla fuga.",
+    text: "We provide fast, reliable, and flexible logistics services tailored for the e-commerce sector. From efficient order fulfillment and secure warehousing to last-mile delivery and real-time tracking, we help your online business reach customers worldwide",
   },
   {
     id: 4,
     title: "Maintenance",
+    subtitle: "Specialized Aircraft Cleaning ",
     image: slider4,
-    text: "Texte du slide 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum minus ut totam facere quasi eos aliquid modi. Cumque nihil sequi, iste odio asperiores placeat corrupti, laudantium suscipit, minus ipsam quis.",
+    text: "We deliver thorough, efficient cleaning services to keep your cargo aircraft in top condition. From interior hold sanitization and debris removal to exterior washing, our team ensures your fleet stays clean, safe, and ready for every mission — meeting the highest industry standards",
   },
   {
     id: 5,
     title: "Crew transportation",
+    subtitle: "Reliable Crew Transportation Services",
     image: slider5,
-    text: "Texte du slide 5 Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, dolorem atque maxime esse unde odio eius tempora culpa dolorum suscipit itaque, nihil perspiciatis cumque quo nulla corrupti est repellendus magnam.",
+    text: "We provide safe, timely, and comfortable transportation for your flight crew. Our professional drivers and well-maintained vehicles ensure smooth transfers between airports, hotels, and bases — helping your team stay focused and ready for every flight.",
   },
 ];
 
@@ -119,11 +128,23 @@ const handleSlideClick = (slideData: any) => {
         <div :class="['bg', `bg--${slideData.id}`]">
           <img :srcset="slideData.image" alt="" role="presentation" />
         </div>
+
         <p class="reset" :class="{ active: slideData.originalIndex === currentSlideIndex }">
+          <span>{{ slideData.subtitle }}</span>
           {{ slideData.text }}
         </p>
       </div>
       <div class="s-slider__height"></div>
+    </div>
+    <div class="s-slider__trusted">
+      <h5>Trusted by</h5>
+      <div class="logos">
+        <figure><img :srcset="company1" alt="Prime Air logo" /></figure>
+        <figure><img :srcset="company2" alt="Alibaba logo" /></figure>
+        <figure><img :srcset="company3" alt="Swissport logo" /></figure>
+        <figure><img :srcset="company4" alt="DHL logo" /></figure>
+      </div>
+      <span>and more...</span>
     </div>
   </section>
 </template>
@@ -187,15 +208,18 @@ const handleSlideClick = (slideData: any) => {
       pointer-events: none;
       line-height: 1.5;
       @apply text-neg-5-16 font-medium;
+      span {
+        @apply text-neg-5-18 block font-bold;
+      }
 
       &::before {
         position: absolute;
         content: "";
-        width: 200%;
+        width: 300%;
         height: calc(100% + 20px);
         top: -20px;
         left: 0px;
-        background: linear-gradient(to bottom, #21212100, #21212199);
+        background: linear-gradient(to bottom, #21212100, #212121bd);
         z-index: -1;
         opacity: 0;
         transition: opacity 0.3s ease 0.3s;
@@ -306,9 +330,30 @@ const handleSlideClick = (slideData: any) => {
       object-fit: cover;
     }
   }
+
+  &__trusted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px;
+    @apply lg:gap-40;
+
+    .logos {
+      display: flex;
+      gap: 20px;
+      @apply sm:gap-30 md:gap-40 lg:gap-50 xl:gap-60 2xl:gap-65;
+
+      figure {
+        max-width: 179px;
+      }
+    }
+    span {
+      @apply text-neg-5-14 lg:text-neg-5-20 text-text-secondary font-light;
+    }
+  }
 }
 
-// Media queries pour le responsive mobile
 @media (max-width: 768px) {
   .s-slider {
     &__content {
